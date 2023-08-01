@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekend Server Calculator</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <header>
+        <h1>Sever Side Calculator</h1>
+    </header>
+    <section id="maths">
+        <form id="mathsForm">
+            <input type="text" id="firstNumber" value="">
+            <button type="button" id="addButton" onclick="mathNumbers(event)"></button>
+            <button type="button" id="subtractButton" onclick="mathNumbers(event)"></button>
+            <button type="button" id="multipyButton" onclick="mathNumbers(event)"></button>
+            <button type="button" id="divideButton" onclick="mathNumbers(event)"></button>
+            <input type="text" id="secondNumber" value="">
+            <button type="button" id="equalButton" onclick="mathNumbers(event)"></button>
+            <button type="button" id="clearButton" onclick="mathNumbers(event)"></button>
+        </form>
+    </section>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="scripts/client.js"></script>
+</body>
+</html>
