@@ -19,6 +19,7 @@ function submitCalculations(event){
     event.preventDefault();
     let integerOne = Numberdocument.querySelector('#firstNumber').value
     let integerTwo = Numberdocument.querySelector('#secondNumber').value
+    let operator = operator
 
     function mathsNumbers(event){
         console.log('operator', event.target.innerHTML);
@@ -29,6 +30,22 @@ function submitCalculations(event){
                 integerTwo: ''
             }
         ];
+
+        function equation()
+            if (operator = '+') {
+                calc = integerOne + integerTwo
+            } else {
+            if (operator = '-')  {
+                calc = integerOne - integerTwo
+            } else {
+            if (operator = '*')  {
+                calc = integerOne * integerTwo
+            } else {
+            if (operator = '/')  {
+                calc = integerOne / integerTwo
+            } 
+            } 
+            }
 
         axios.post("/calculations", calc).then((response) => {
             console.log('back from POST:', response);
