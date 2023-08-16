@@ -1,5 +1,7 @@
 console.log('hello calculators');
 
+let operator = null;
+
 function getCalculations() {
     console.log('in getCalculations');
     //axios call to server to get calculations
@@ -62,4 +64,28 @@ function submitCalculations(event) {
     })
 
     //document.querySelector('#clearButton').reset();
+}
+
+function renderToDOM(calcs) {
+    let outputList = document.querySelector('#output');
+    outputList.innerHTML = `<h2>${calcs.at(-1).result}</h2>`
+
+    for (let calc of calcs) {
+        outputList.innerHTML += `
+            <p>${calc.firstNumber} ${calc.operator} ${calc.secondNumber} = ${calc.result}</p>
+        `
+    }
+}
+
+function operatorClick(operatorFromHTML) {
+    operator = operatorFromHTML;
+    const operatorButtons = document.querySelectorAll(".operator");
+    operatorButtons.forEach(button => {
+    button.addEventListener("click", function (event) { 
+        operatorButtons.forEach(button => {
+            button.style.backgroundColor = '';
+        }); 
+        event.target.style.backgroundColor = 'red';
+    });
+});
 }

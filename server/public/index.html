@@ -13,14 +13,14 @@
     </header>
     <!-- cleaner button setup -->
     <section id="maths">
-        <form onsubmit="submitForm(event)">
+        <form onsubmit="submitCalculations(event)">
             <input type="text" id="firstNumber" />
             <input type="button" class="operator" onclick="operatorClick(this.value)" value="+" />
             <input type="button" class="operator" onclick="operatorClick(this.value)" value="-" />
             <input type="button" class="operator" onclick="operatorClick(this.value)" value="*" />
             <input type="button" class="operator" onclick="operatorClick(this.value)" value="/" />
             <input type="text" id="secondNumber" />
-            <input type="button" id="equals" value="=" onclick="submitForm(event)" />
+            <input type="button" id="equals" value="=" onclick="submitCalculations(event)" />
             <input type="reset" id="clear" value="C" />
         </form>
         <!-- calculation output -->
