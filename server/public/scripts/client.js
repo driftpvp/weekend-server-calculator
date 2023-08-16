@@ -6,9 +6,10 @@ function getCalculations() {
     console.log('in getCalculations');
     //axios call to server to get calculations
     axios.get("/calculations").then((response) => {
-        let calcsFromServer = response.data;
-        renderToDom(calcsFromServer)
-        console.log('Calculations from server', calcsFromServer);
+        //let calcsFromServer = response.data;
+        console.log('Calculations from server', response);
+        renderToDom(response.data);
+        
     })
         .catch((error) => {
             console.log("error in GET", error);
