@@ -6,15 +6,41 @@ function getCalculations() {
     console.log('in getCalculations');
     //axios call to server to get calculations
     axios.get("/calculations").then((response) => {
-        let calculations = response.data;
-        console.log('Calculations from server', calculations);
-
-        renderToDom(calculations);
+        let calcsFromServer = response.data;
+        renderToDom(calcsFromServer)
+        console.log('Calculations from server', calcsFromServer);
     })
         .catch((error) => {
             console.log("error in GET", error);
         });
 }// end getCalculations
+
+function renderToDOM(calcs) {
+    let outputList = document.querySelector('#output');
+    outputList.innerHTML = `<h2>${calcs.at(-1).result}</h2>`
+
+    for (let calculations of calcs) {
+        outputList.innerHTML += `
+            <p>${calculations.firstNumber} ${calculations.operator} 
+            ${calculations.secondNumber} = ${calculations.result}</p>
+        `;
+    }
+}
+
+
+
+function operatorClick(operatorFromHTML) {
+    operator = operatorFromHTML;
+    const operatorButtons = document.querySelectorAll(".operator");
+    operatorButtons.forEach(button => {
+    button.addEventListener("click", function (event) { 
+        operatorButtons.forEach(button => {
+            button.style.backgroundColor = '';
+        }); 
+        event.target.style.backgroundColor = 'red';
+    });
+});
+}
 
 function submitCalculations(event) {
     console.log('in submitCalculations');
@@ -26,6 +52,7 @@ function submitCalculations(event) {
         operator: operator,
         secondNumber: secondNumber
     }
+
 
     // function mathsNumbers(event){
     //     console.log('operator', event.target.innerHTML);
@@ -66,26 +93,4 @@ function submitCalculations(event) {
     //document.querySelector('#clearButton').reset();
 }
 
-function renderToDOM(calcs) {
-    let outputList = document.querySelector('#output');
-    outputList.innerHTML = `<h2>${calcs.at(-1).result}</h2>`
 
-    for (let calc of calcs) {
-        outputList.innerHTML += `
-            <p>${calc.firstNumber} ${calc.operator} ${calc.secondNumber} = ${calc.result}</p>
-        `
-    }
-}
-
-function operatorClick(operatorFromHTML) {
-    operator = operatorFromHTML;
-    const operatorButtons = document.querySelectorAll(".operator");
-    operatorButtons.forEach(button => {
-    button.addEventListener("click", function (event) { 
-        operatorButtons.forEach(button => {
-            button.style.backgroundColor = '';
-        }); 
-        event.target.style.backgroundColor = 'red';
-    });
-});
-}

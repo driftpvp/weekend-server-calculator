@@ -14,7 +14,7 @@ calcRouter.post('/', (req, res) => {
     console.log('get a POST request.', req.body);
 
     let calculations = req.body
-
+    let result;
     switch (calculations.operator) {
         case "+": result = calculations.firstNumber + calculations.secondNumber;
         break;
