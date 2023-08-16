@@ -1,62 +1,65 @@
 console.log('hello calculators');
 
-function getCalculations(){
+function getCalculations() {
     console.log('in getCalculations');
     //axios call to server to get calculations
-    axios.get("/calculations/").then((response) => {
+    axios.get("/calculations").then((response) => {
         let calculations = response.data;
-        console.log(calculations);
+        console.log('Calculations from server', calculations);
 
-        updateDom(calculations);
+        renderToDom(calculations);
     })
-    .catch((error) => {
-        console.log("error in GET", error);
-    });
+        .catch((error) => {
+            console.log("error in GET", error);
+        });
 }// end getCalculations
 
-function submitCalculations(event){
+function submitCalculations(event) {
     console.log('in submitCalculations');
     event.preventDefault();
-    let integerOne = Numberdocument.querySelector('#firstNumber').value
-    let integerTwo = Numberdocument.querySelector('#secondNumber').value
-    let operator = operator
-
-    function mathsNumbers(event){
-        console.log('operator', event.target.innerHTML);
-        let calc = [
-            {
-                integerOne: '',
-                operator: '',
-                integerTwo: ''
-            }
-        ];
-
-        function equation()
-            if (operator = '+') {
-                calc = integerOne + integerTwo
-            } else {
-            if (operator = '-')  {
-                calc = integerOne - integerTwo
-            } else {
-            if (operator = '*')  {
-                calc = integerOne * integerTwo
-            } else {
-            if (operator = '/')  {
-                calc = integerOne / integerTwo
-            } 
-            } 
-            }
-
-        axios.post("/calculations", calc).then((response) => {
-            console.log('back from POST:', response);
-            document.querySelector('#firstNumber').value = ''
-            document.querySelector('#secondNumber').value = ''
-            getCalculations();
-        })
-        .catch((error) => {
-            console.log('error in POST', error);
-        })
-
-        document.querySelector('#clearButton').reset();
+    let firstNumber = Number(document.querySelector('#firstNumber').value);
+    let secondNumber = Number(document.querySelector('#secondNumber').value);
+    let formula = {
+        firstNumber: firstNumber,
+        operator: operator,
+        secondNumber: secondNumber
     }
+
+    // function mathsNumbers(event){
+    //     console.log('operator', event.target.innerHTML);
+    //     let calc = [
+    //         {
+    //             firstNumber: '',
+    //             operator: '',
+    //             secondNumber: ''
+    //         }
+    //     ];
+
+    //     function equation()
+    //         if (operator = '+') {
+    //             calc = firstNumber + secondNumber
+    //         } else {
+    //         if (operator = '-')  {
+    //             calc = firstNumber - secondNumber
+    //         } else {
+    //         if (operator = '*')  {
+    //             calc = firstNumber * secondNumber
+    //         } else {
+    //         if (operator = '/')  {
+    //             calc = firstNumber / secondNumber
+    //         } 
+    //         } 
+    //         }
+
+    axios.post("/calculations", formula).then((response) => {
+        console.log('back from POST:', response);
+        document.querySelector('#firstNumber').value = ''
+        document.querySelector('#secondNumber').value = ''
+        getCalculations();
+    })
+    .catch((error) => {
+    console.log('error in POST', error);
+    })
+
+    //document.querySelector('#clearButton').reset();
 }

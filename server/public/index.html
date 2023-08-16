@@ -11,17 +11,20 @@
     <header>
         <h1>Sever Side Calculator</h1>
     </header>
+    <!-- cleaner button setup -->
     <section id="maths">
-        <form id="mathsForm">
-            <input type="text" id="firstNumber" value="">
-            <button type="button" id="addButton" onclick="mathNumbers(event)"></button>
-            <button type="button" id="subtractButton" onclick="mathNumbers(event)"></button>
-            <button type="button" id="multipyButton" onclick="mathNumbers(event)"></button>
-            <button type="button" id="divideButton" onclick="mathNumbers(event)"></button>
-            <input type="text" id="secondNumber" value="">
-            <button type="button" id="equalButton" onclick="equalNumbers(event)"></button>
-            <button type="button" id="clearButton" onclick="clearNumbers(event)"></button>
+        <form onsubmit="submitForm(event)">
+            <input type="text" id="firstNumber" />
+            <input type="button" class="operator" onclick="operatorClick(this.value)" value="+" />
+            <input type="button" class="operator" onclick="operatorClick(this.value)" value="-" />
+            <input type="button" class="operator" onclick="operatorClick(this.value)" value="*" />
+            <input type="button" class="operator" onclick="operatorClick(this.value)" value="/" />
+            <input type="text" id="secondNumber" />
+            <input type="button" id="equals" value="=" onclick="submitForm(event)" />
+            <input type="reset" id="clear" value="C" />
         </form>
+        <!-- calculation output -->
+        <div id='output'></div>
     </section>
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
